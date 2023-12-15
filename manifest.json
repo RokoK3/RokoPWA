@@ -1,0 +1,16 @@
+{
+    "short_name": "MicApp",
+    "name": "Microphone PWA",
+    "icons": [
+        {
+            "src": "/mic.png",
+            "type": "image/png",
+            "sizes": "1024x1024"
+        }
+    ],
+    "start_url": "/index.html",
+    "background_color": "#FFFFFF",
+    "display": "standalone",
+    "scope": ".",
+    "theme_color": "#000000"
+}
