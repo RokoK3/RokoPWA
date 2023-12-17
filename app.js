@@ -2,6 +2,7 @@ let mediaRecorder;
 let audioChunks = [];
 let installPromptEvent;
 
+
 window.addEventListener('beforeinstallprompt', (event) => {
     event.preventDefault();
     installPromptEvent = event;
@@ -49,12 +50,21 @@ document.getElementById('startRecording').addEventListener('click', function() {
         });
 });
 
+
 document.getElementById('stopRecording').addEventListener('click', function() {
     mediaRecorder.stop();
     document.getElementById('stopRecording').disabled = true;
+    if ('Notification' in window) {
+        Notification.requestPermission().then(permission => {
+            if (permission === 'granted') {
+                new Notification("Recording Stopped", {
+                    body: "You have successfully recorded a voice message. You can replay it now.",
+                    icon: "mic.png" 
+                });
+            }
+        });
+    }
 });
-
-
 
 if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/sw.js')
