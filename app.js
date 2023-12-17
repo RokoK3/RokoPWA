@@ -2,7 +2,6 @@ let mediaRecorder;
 let audioChunks = [];
 let installPromptEvent;
 
-
 window.addEventListener('beforeinstallprompt', (event) => {
     event.preventDefault();
     installPromptEvent = event;
@@ -64,6 +63,9 @@ document.getElementById('stopRecording').addEventListener('click', function() {
             }
         });
     }
+    else {
+        console.log('Notifications are not supported on your browser.');
+    }
 });
 
 if ('serviceWorker' in navigator) {
@@ -74,4 +76,7 @@ if ('serviceWorker' in navigator) {
         .catch(function(error) {
             console.log('Service Worker Registration Failed', error);
         });
+}
+else {
+    console.log('Offline mode is not supported on your browser.');
 }
